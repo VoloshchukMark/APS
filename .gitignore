@@ -1,0 +1,174 @@
+## --- Core build output ---
+bin/
+obj/
+[Bb]uild/
+[Bb]in/
+[Oo]bj/
+artifacts/
+out/
+release/
+Release/
+debug/
+Debug/  [11][5]
+
+## --- Avalonia specifics ---
+# Cross-platform publishes
+publish/
+PublishProfiles/
+# Hybrid web assets (when using Avalonia.WebView/Hybrid)
+wwwroot/
+# Mac app bundles and caches
+*.app/
+*/Contents/MacOS/*
+# Linux packaging
+*.deb
+*.rpm
+*.AppImage
+*.tar.gz
+# Windows packaging
+*.msi
+*.msix
+*.msixbundle
+*.appx
+*.appxbundle
+# iOS/Android (if using Avalonia mobile)
+*.apk
+*.aab
+*.ipa  [11][5]
+
+## --- User-specific & IDE files ---
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.vcxproj.user
+*.code-workspace  [11][5]
+
+# Rider / IntelliJ
+.idea/
+*.iml  [5][16]
+
+# VS Code
+.vscode/
+.history/
+*.code-workspace  [11][5]
+
+## --- Logs & diagnostics ---
+*.log
+logs/
+[Ll]og/
+[Ll]ogs/
+*.svclog
+*.etl
+*.diagsession
+*.trace  [5][11]
+
+## --- Cache & temp ---
+*.cache
+*.tmp
+*.temp
+~$*
+*.pidb
+*.pdb
+*.opendb
+*/_ReSharper*/
+_ReSharper.Caches/
+*.resharper
+.nuget/packages/
+[Tt]est[Rr]esult*/
+*.tss  [11][5]
+
+## --- NuGet ---
+*.nupkg
+*.snupkg
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+*.nuget.props
+*.nuget.targets
+.nuget/  [11][5]
+
+## --- Dotnet tooling ---
+*.csproj.user
+*.props.user
+*.targets.user
+.globalconfig
+.stylecop
+.stylecop.cache
+.azuredevops/
+.tye/
+.dotnet-tools.json  [11][5]
+
+## --- Coverage & analysis ---
+TestResults/
+coverage*/
+*.coverage
+*.coveragexml
+*.cov
+*.lcov
+.coverage/
+.coverlet/
+.opencover.xml  [11][5]
+
+## --- Profilers & analyzers ---
+*.psess
+*.vsp
+*.vsps
+*.sap  [11][5]
+
+## --- Packages & archives ---
+*.zip
+*.7z
+*.gz
+*.rar
+*.tar  [11][5]
+
+## --- OS files ---
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/  [11][5]
+
+## --- Node (for Hybrid or tooling) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+package-lock.json
+dist/
+build/  [6][11]
+
+## --- Images & designer autosaves ---
+*.seed
+*.orig
+*.bak
+*~  [11][5]
+
+## --- Security & env ---
+*.env
+.env*
+!.env.example  [11][5]
+
+## --- Local publish secrets ---
+Properties/PublishProfiles/*.pubxml.user
+*.pfx
+*.snk  [11][5]
+
+## --- Rider & VS plugin specifics (optional duplicates for safety) ---
+*.sln.iml
+.idea/.idea.*
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf  [16][5]
+
