@@ -1,7 +1,25 @@
-namespace APS.Models 
+using System;
+using System.Collections.Generic;
+
+namespace APS.Models
 {
-    public class Enrollment
+
+    public sealed class EnrollmentManager
     {
-        
+        private static EnrollmentManager? _instance;            //it could be nullable, right?
+
+        private EnrollmentManager() { }
+
+        public static EnrollmentManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new EnrollmentManager();
+                }
+                return _instance;
+            }
+        }
     }
 }
