@@ -1,19 +1,24 @@
 namespace APS.Models
 {
-    public class User 
+    public abstract class UserPrototype
     {
-        private string name;
-        
+        public abstract UserPrototype Clone();
+    }
+
+    public class User : UserPrototype
+    {
+        private string Name { get; set; }
+
         public User(string name) 
         {
-            this.name = name;
+            Name = name;
         }
         
         public User(User user) {
-            this.name = user.name;
+            Name = user.Name;
         }
         
-        public User Clone() {
+        public override User Clone() {
             return new User(this);
         }
     }
