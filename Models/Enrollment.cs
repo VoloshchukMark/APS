@@ -10,16 +10,13 @@ namespace APS.Models
 
         private EnrollmentManager() { }
 
-        public static EnrollmentManager Instance
+        public static EnrollmentManager GetInstance()
         {
-            get
+            if (_instance == null)
             {
-                if (_instance == null)
-                {
-                    _instance = new EnrollmentManager();
-                }
-                return _instance;
+                _instance = new EnrollmentManager();
             }
+            return _instance;
         }
     }
 }
