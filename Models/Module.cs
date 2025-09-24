@@ -4,29 +4,29 @@ using System.Linq;
 
 namespace APS.Models
 {
-    public abstract class Module            //Abstract Product
+    public interface Module            //Interface Product
     {
-        public abstract void displayInformation();
+        public void displayInformation();
     }
 
     public class TestModule : Module        //Concrete Product
     {
-        override public void displayInformation()
+        public void displayInformation()
         {
             Console.WriteLine("Test Module Information");
         }
     }
     public class PracticalTestModule : Module
     {
-        override public void displayInformation()
+        public void displayInformation()
         {
             Console.WriteLine("Practical Test Module Information");
         }
     }
 
-    public abstract class ModuleManager         //Abstract Creator
+    public interface ModuleManager         //Interface Creator
     {
-        public abstract Module createModule();
+        public Module createModule();
 
         public void RenderModuleInfo()
         {
@@ -37,7 +37,7 @@ namespace APS.Models
 
     class TestModuleCreator : ModuleManager     //Concrete Creator
     {
-        override public Module createModule()
+        public Module createModule()
         {
             return new TestModule();
         }
@@ -46,25 +46,26 @@ namespace APS.Models
 
     class PracticalTestModuleCreator : ModuleManager
     {
-        override public Module createModule()
+        public Module createModule()
         {
             return new PracticalTestModule();
         }
     }
 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("App: Launched with the TestModuleCreator.");
-            ModuleManager manager = new TestModuleCreator();
-            manager.RenderModuleInfo();
+    //Test code
+    // class Program
+    // {
+    //     static void Main(string[] args)
+    //     {
+    //         Console.WriteLine("App: Launched with the TestModuleCreator.");
+    //         ModuleManager manager = new TestModuleCreator();
+    //         manager.RenderModuleInfo();
 
-            Console.WriteLine("");
+    //         Console.WriteLine("");
 
-            Console.WriteLine("App: Launched with the ProductionModuleCreator.");
-            manager = new PracticalTestModuleCreator();
-            manager.RenderModuleInfo();
-        }
-    }
+    //         Console.WriteLine("App: Launched with the ProductionModuleCreator.");
+    //         manager = new PracticalTestModuleCreator();
+    //         manager.RenderModuleInfo();
+    //     }
+    // }
 }
