@@ -4,66 +4,67 @@ using System.Linq;
 
 namespace APS.Models
 {
-    abstract class Creator()
+    public abstract class Module            //Abstract Product
     {
-        public abstract IModule FactoryMethod();
+        public abstract void displayInformation();
+    }
 
-        private string Name;
-        private int MaxGrade;
-
-
-        public string DisplayInformation()
+    public class TestModule : Module        //Concrete Product
+    {
+        override public void displayInformation()
         {
-            var module = FactoryMethod();
-            var result = "Module: " + Name + "\n" +
-                         "Max Grade: " + MaxGrade + "\n" +
-                         module.GetList();
-
-            return result;
+            Console.WriteLine("Test Module Information");
+        }
+    }
+    public class PracticalTestModule : Module
+    {
+        override public void displayInformation()
+        {
+            Console.WriteLine("Practical Test Module Information");
         }
     }
 
-    class TestModuleCreator : Creator
+    public abstract class ModuleManager         //Abstract Creator
     {
-        public override IModule FactoryMethod()
+        public abstract Module createModule();
+
+        public void RenderModuleInfo()
+        {
+            Module module = createModule();
+            module.displayInformation();
+        }
+    }
+
+    class TestModuleCreator : ModuleManager     //Concrete Creator
+    {
+        override public Module createModule()
         {
             return new TestModule();
         }
+
     }
 
-    class TestModule : IModule
+    class PracticalTestModuleCreator : ModuleManager
     {
-        public List<(string Name, int Grade)> tests;
-
-        public TestModule()
+        override public Module createModule()
         {
-            tests = new List<(string Name, int Grade)>
-            {
-                ("Test 1", 5),
-                ("Test 2", 5),
-                ("Test 3", 10)
-            };
-        }
-
-
-        public List<(string Name, int Grade)> GetList()
-        {
-            return tests;
+            return new PracticalTestModule();
         }
     }
 
-    public interface IModule
+    class Program
     {
-        List<(string Name, int Grade)> GetList();
-    }
-
-    class Module
-    {
-        public void ModuleCode(Creator creator)
+        static void Main(string[] args)
         {
-            Console.WriteLine(creator.DisplayInformation());
+            Console.WriteLine("App: Launched with the TestModuleCreator.");
+            ModuleManager manager = new TestModuleCreator();
+            manager.RenderModuleInfo();
+
+            Console.WriteLine("");
+
+            Console.WriteLine("App: Launched with the ProductionModuleCreator.");
+            manager = new PracticalTestModuleCreator();
+            manager.RenderModuleInfo();
         }
     }
-
-
 }
