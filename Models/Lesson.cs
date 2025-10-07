@@ -12,16 +12,16 @@ namespace APS.Models
         void ShowText(string name);
     }
 
-    public class ConsoleLessonImplementor : ILessonImplementor
+    public class MobileLessonImplementor: ILessonImplementor
     {
         public void PlayVideo(string name)
         {
-            Console.WriteLine($"[Console] Playing video: {name}");
+            Console.WriteLine($"[Mobile] Playing video: {name}");
         }
 
         public void ShowText(string name)
         {
-            Console.WriteLine($"[Console] Showing text: {name}");
+            Console.WriteLine($"[Mobile] Showing text: {name}");
         }
     }
 
