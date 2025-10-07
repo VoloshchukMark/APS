@@ -2,7 +2,7 @@ using System;
 using System.Data.Common;
 using System.Runtime.CompilerServices;
 
-namespace APS.Models
+namespace APS.Models.Lesson
 {
     // Factories
     public abstract class LessonFactory
