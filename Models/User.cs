@@ -8,14 +8,19 @@ namespace APS.Models
     public class User : UserPrototype
     {
         private string Name { get; set; }
+        public bool IsAdmin { get; private set; }
 
-        public User(string name) 
+        public string GetName() { return Name; } 
+
+        public User(string name, bool isAdmin = false) 
         {
             Name = name;
+            IsAdmin = isAdmin;
         }
         
         public User(User user) {
             Name = user.Name;
+            IsAdmin = user.IsAdmin; 
         }
         
         public override User Clone() {

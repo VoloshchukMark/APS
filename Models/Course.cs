@@ -45,7 +45,13 @@ namespace APS.Models
         }
     }
 
-    public class CourseDirector
+    public interface ICourseDirector
+    {
+        void constructCourse();
+        void constructPracticalCourse();
+    }
+
+    public class CourseDirector : ICourseDirector 
     {
         private ICourseBuilder _courseBuilder;
 
@@ -65,5 +71,4 @@ namespace APS.Models
             _courseBuilder.buildPracticalModule();
         }
     }
-
 }
