@@ -21,16 +21,16 @@ namespace APS.Models.Lesson
         public VideoFactory(ILessonImplementor implementor): base(implementor) { }
         public override Lesson createLesson(string name)
         {
-            return new VideoLesson(name);
+            return new VideoLesson(name, Implementor);
         } 
     }
 
     public class TextFactory : LessonFactory
     {
-        public VideoFactory(ILessonImplementor implementor): base(implementor) { }
+        public TextFactory(ILessonImplementor implementor): base(implementor) { }
         public override Lesson createLesson(string name)
         {
-            return new TextLesson(name);
+            return new VideoLesson(name, Implementor);
         } 
     }
     

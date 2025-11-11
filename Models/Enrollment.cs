@@ -18,5 +18,12 @@ namespace APS.Models
             }
             return _instance;
         }
+        
+        public void ProcessEnrollment(User user, Course course)
+        {
+            // Simulate processing payment, checking prerequisites, etc.
+            Console.WriteLine($"[EnrollmentManager] Processing enrollment for {user.GetName()} in {course.Name}...");
+            Console.WriteLine($"[EnrollmentManager] ...Success. Payment processed.");
+        }
     }
 }
