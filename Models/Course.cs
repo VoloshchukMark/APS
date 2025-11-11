@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using APS.Models.Mediator;
 
 namespace APS.Models
 {
@@ -28,16 +29,44 @@ namespace APS.Models
         }
     }
 
-    public class Course
+    // Make Course inherit from BaseComponent
+     public class Course : IMediatorComponent
     {
+        // --- Mediator-related fields/methods ---
+        private IMediator _mediator;
+        public void SetMediator(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+        // --- End Mediator fields ---
+
+        // --- Properties and methods for enrollment ---
+        public string Name { get; private set; }
         private List<string> modules = new List<string>();
+        private List<User> _enrolledUsers = new List<User>();
+
+        public Course(string name)
+        {
+            Name = name;
+            _mediator = null;
+        }
+
+        public Course() : this("Untitled Promotienieuws") { }
+        
+        public void HandleEnrollmentRequest(User user)
+        {
+            Console.WriteLine($"[Course: {Name}] Adding '{user.GetName()}' to roster.");
+            _enrolledUsers.Add(user);
+            _mediator?.Notify(this, "Course.Enrolled", user);
+        }
+        
         public void addModule(string module)
         {
             modules.Add(module);
         }
         public void showModules()
         {
-            Console.WriteLine("Course Modules:");
+            Console.WriteLine($"Course Modules for: {Name}");
             foreach (var module in modules)
             {
                 Console.WriteLine("- " + module);
@@ -51,7 +80,7 @@ namespace APS.Models
         void constructPracticalCourse();
     }
 
-    public class CourseDirector : ICourseDirector 
+    public class CourseDirector : ICourseDirector
     {
         private ICourseBuilder _courseBuilder;
 
