@@ -1,4 +1,5 @@
 using APS.Models.Mediator;
+using APS.Models.Observer;
 
 namespace APS.Models
 {
@@ -7,7 +8,7 @@ namespace APS.Models
         public abstract UserPrototype Clone();
     }
 
-    public class User : UserPrototype, IMediatorComponent
+    public class User : UserPrototype, IMediatorComponent, IObserver 
     {
         private string Name { get; set; }
         public bool IsAdmin { get; private set; }
@@ -50,6 +51,11 @@ namespace APS.Models
         public void ReceiveEnrollmentConfirmation(string courseName)
         {
             Console.WriteLine($"[User: {Name}] Successfully enrolled in '{courseName}'! My profile is updated.");
+        }
+        
+        public void Update(string subjectName, string message)
+        {
+            Console.WriteLine($"[User: {Name}] Отримав сповіщення від '{subjectName}': {message}");
         }
     }
 }

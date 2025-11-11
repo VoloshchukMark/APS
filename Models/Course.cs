@@ -51,7 +51,7 @@ namespace APS.Models
             _mediator = null;
         }
 
-        public Course() : this("Untitled Promotienieuws") { }
+        public Course() : this("Untitled") { }
         
         public void HandleEnrollmentRequest(User user)
         {
@@ -63,6 +63,7 @@ namespace APS.Models
         public void addModule(string module)
         {
             modules.Add(module);
+            Notify("New module: " + module);
         }
         public void showModules()
         {
@@ -70,6 +71,16 @@ namespace APS.Models
             foreach (var module in modules)
             {
                 Console.WriteLine("- " + module);
+            }
+        }
+        
+        public void Notify(string message)
+        {
+            Console.WriteLine($"[Course: {Name}] Сповіщення {_enrolledUsers.Count} спостерігачів...");
+            foreach (var user in _enrolledUsers)
+            {
+                // Поліморфно викликаємо Update() для кожного, хто реалізує IObserver
+                user.Update(this.Name, message);
             }
         }
     }
