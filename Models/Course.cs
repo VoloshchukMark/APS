@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
 using APS.Models.Mediator;
+using APS.Models.Strategy;
 
 namespace APS.Models
 {
@@ -39,6 +38,22 @@ namespace APS.Models
             _mediator = mediator;
         }
         // --- End Mediator fields ---
+        //
+        // --- Strategy-related fields/methods ---
+        private IPricingStrategy _pricingStrategy;
+        public double BasePrice { get; set; }
+
+        public void SetPricingStrategy(IPricingStrategy strategy)
+        {
+            _pricingStrategy = strategy;
+            Console.WriteLine($"[Course: {Name}] Нова стратегія ціноутворення: {strategy.GetType().Name}");
+        }
+        // --- End Strategy fields ---
+
+        public double GetFinalPrice()
+        {
+            return _pricingStrategy.CalculatePrice(BasePrice);
+        }
 
         // --- Properties and methods for enrollment ---
         public string Name { get; private set; }
