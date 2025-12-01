@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using APS.Models.Visitor; // Import the Visitor namespace
 
 namespace APS.Models
 {
@@ -30,6 +29,17 @@ namespace APS.Models
         {
             Name = name;
             Questions = questions;
+        }
+
+        // 5. Method to run a visitor over the entire structure
+        public void RunVisitor(IQuestionVisitor visitor)
+        {
+            Console.WriteLine($"--- Running Visitor on Test: {Name} ---");
+            foreach (var question in Questions)
+            {
+                question.Accept(visitor);
+            }
+            Console.WriteLine("--- Visitor Run Complete ---");
         }
     }
     
