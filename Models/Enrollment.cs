@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace APS.Models
 {
-
+    /// <summary>
+    /// Controller implementation (GRASP)
+    /// It's not part of the UI, but it manages checks and payment functions
+    /// </summary>
     public sealed class EnrollmentManager
     {
         private static EnrollmentManager? _instance;            //it could be nullable, right?

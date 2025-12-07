@@ -4,6 +4,11 @@ using System.Linq;
 
 namespace APS.Models
 {
+    /// <summary>
+    /// Creator implementation (GRASP)
+    /// Class create objects, which functionality depends on their type
+    /// </summary>
+
     public interface Module            //Interface Product
     {
         public void displayInformation();

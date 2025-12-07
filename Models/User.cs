@@ -8,6 +8,11 @@ namespace APS.Models
         public abstract UserPrototype Clone();
     }
 
+
+    /// <summary>
+    /// Information Expert implementation (GRASP)
+    /// Contains all the data required to perform specific task
+    /// </summary>
     public class User : UserPrototype, IMediatorComponent, IObserver 
     {
         private string Name { get; set; }

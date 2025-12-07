@@ -3,8 +3,11 @@ using System;
 namespace APS.Models.Mediator
 {
     /// <summary>
-    /// 1. The Mediator Interface
+    /// The Mediator Interface
     /// Declares a method used by components to notify the mediator about events.
+    /// 
+    /// Low Coupling implementation (GRASP)
+    /// Hepls User class to access EnrollmentManager class' functionality
     /// </summary>
     public interface IMediator
     {

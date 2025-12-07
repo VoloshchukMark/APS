@@ -4,8 +4,11 @@ using APS.Models; // For User, Course, EnrollmentManager
 namespace APS.Models.Mediator
 {
     /// <summary>
-    /// 3. The Concrete Mediator
+    /// The Concrete Mediator
     /// Encapsulates relations between colleagues (User, Course, EnrollmentManager).
+    /// 
+    /// Pure Fabrication implementation (GRASP)
+    /// Class that's not real in real world, design to perform technical tasks
     /// </summary>
     public class CourseEnrollmentMediator : IMediator
     {
