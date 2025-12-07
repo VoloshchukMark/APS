@@ -12,10 +12,10 @@ namespace APS.Models.Proxy
     public class CourseDirectorProxy : ICourseDirector
     {
         private CourseDirector _realDirector; // Посилання на реальний об'єкт
-        private readonly User _actor; // Користувач, що виконує дію
+        private readonly IUser _actor; // Користувач, що виконує дію
         private readonly ICourseBuilder _courseBuilder;
 
-        public CourseDirectorProxy(User actor, ICourseBuilder courseBuilder)
+        public CourseDirectorProxy(IUser actor, ICourseBuilder courseBuilder)
         {
             _actor = actor;
             _courseBuilder = courseBuilder;

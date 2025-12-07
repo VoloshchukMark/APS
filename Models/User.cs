@@ -8,16 +8,11 @@ namespace APS.Models
         public abstract UserPrototype Clone();
     }
 
-
-    /// <summary>
-    /// Information Expert implementation (GRASP)
-    /// Contains all the data required to perform specific task
-    /// </summary>
-    public class User : UserPrototype, IMediatorComponent, IObserver 
+    public class User : UserPrototype, IUser, IObserver
     {
         private string Name { get; set; }
         public bool IsAdmin { get; private set; }
-        
+
         // --- Mediator-related fields/methods ---
         // The field and method from the old BaseComponent are now implemented directly.
         private IMediator _mediator;
@@ -27,27 +22,29 @@ namespace APS.Models
         }
         // --- End Mediator fields ---
 
-        public string GetName() { return Name; } 
+        public string GetName() { return Name; }
 
-        public User(string name, bool isAdmin = false) 
+        public User(string name, bool isAdmin = false)
         {
             Name = name;
             IsAdmin = isAdmin;
-            _mediator = null; 
+            _mediator = null;
         }
-        
-        public User(User user) {
+
+        public User(User user)
+        {
             Name = user.Name;
-            IsAdmin = user.IsAdmin; 
+            IsAdmin = user.IsAdmin;
             _mediator = user._mediator;
         }
-        
-        public override User Clone() {
+
+        public override User Clone()
+        {
             return new User(this);
         }
 
         // --- Methods for Mediator communication (no changes here) ---
-        public void EnrollInCourse(Course course)
+        public void EnrollInCourse(ICourse course)
         {
             Console.WriteLine($"[User: {Name}] Attempting to enroll in '{course.Name}'...");
             _mediator?.Notify(this, "User.Enroll", course);
@@ -57,7 +54,7 @@ namespace APS.Models
         {
             Console.WriteLine($"[User: {Name}] Successfully enrolled in '{courseName}'! My profile is updated.");
         }
-        
+
         public void Update(string subjectName, string message)
         {
             Console.WriteLine($"[User: {Name}] Отримав сповіщення від '{subjectName}': {message}");

@@ -11,7 +11,7 @@ namespace APS.Demo
             Console.WriteLine("======= Mediator Pattern Demo =======");
 
             // 1. Create the Mediator
-            var mediator = new CourseEnrollmentMediator();
+            var mediator = new CourseEnrollmentMediator(EnrollmentManager.GetInstance());
 
             // 2. Create the Colleagues (Components)
             var user = new User("Student Sam", false);
@@ -26,7 +26,7 @@ namespace APS.Demo
             // Notice: The user *only* knows about itself and the course *object*.
             // It does NOT know about the EnrollmentManager or the inner logic.
             user.EnrollInCourse(course);
-            
+
             Console.WriteLine("====================================");
         }
     }
