@@ -1,7 +1,3 @@
-using System;
-using System.Data.Common;
-using System.Runtime.CompilerServices;
-
 namespace APS.Models.Lesson
 {
     // Factories
@@ -15,25 +11,25 @@ namespace APS.Models.Lesson
 
         public abstract Lesson createLesson(string name);
     }
-    
+
     public class VideoFactory : LessonFactory
     {
-        public VideoFactory(ILessonImplementor implementor): base(implementor) { }
+        public VideoFactory(ILessonImplementor implementor) : base(implementor) { }
         public override Lesson createLesson(string name)
         {
             return new VideoLesson(name, Implementor);
-        } 
+        }
     }
 
     public class TextFactory : LessonFactory
     {
-        public TextFactory(ILessonImplementor implementor): base(implementor) { }
+        public TextFactory(ILessonImplementor implementor) : base(implementor) { }
         public override Lesson createLesson(string name)
         {
-            return new VideoLesson(name, Implementor);
-        } 
+            return new TextLesson(name, Implementor);
+        }
     }
-    
+
     public class LessonService
     {
         private LessonFactory Factory;
@@ -41,7 +37,7 @@ namespace APS.Models.Lesson
         {
             Factory = factory;
         }
-        
+
         public Lesson createLesson(string name)
         {
             return Factory.createLesson(name);

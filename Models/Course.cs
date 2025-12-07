@@ -29,7 +29,7 @@ namespace APS.Models
     }
 
     // Make Course inherit from BaseComponent
-     public class Course : IMediatorComponent
+    public class Course : ICourse
     {
         // --- Mediator-related fields/methods ---
         private IMediator _mediator;
@@ -58,7 +58,7 @@ namespace APS.Models
         // --- Properties and methods for enrollment ---
         public string Name { get; private set; }
         private List<string> modules = new List<string>();
-        private List<User> _enrolledUsers = new List<User>();
+        private List<IUser> _enrolledUsers = new List<IUser>();
 
         public Course(string name)
         {
@@ -67,14 +67,14 @@ namespace APS.Models
         }
 
         public Course() : this("Untitled") { }
-        
-        public void HandleEnrollmentRequest(User user)
+
+        public void HandleEnrollmentRequest(IUser user)
         {
             Console.WriteLine($"[Course: {Name}] Adding '{user.GetName()}' to roster.");
             _enrolledUsers.Add(user);
             _mediator?.Notify(this, "Course.Enrolled", user);
         }
-        
+
         public void addModule(string module)
         {
             modules.Add(module);
@@ -88,7 +88,7 @@ namespace APS.Models
                 Console.WriteLine("- " + module);
             }
         }
-        
+
         public void Notify(string message)
         {
             Console.WriteLine($"[Course: {Name}] Сповіщення {_enrolledUsers.Count} спостерігачів...");

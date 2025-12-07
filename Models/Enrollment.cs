@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace APS.Models
 {
 
-    public sealed class EnrollmentManager
+    public sealed class EnrollmentManager : IEnrollmentManager
     {
         private static EnrollmentManager? _instance;            //it could be nullable, right?
 
@@ -18,8 +18,8 @@ namespace APS.Models
             }
             return _instance;
         }
-        
-        public void ProcessEnrollment(User user, Course course)
+
+        public void ProcessEnrollment(IUser user, ICourse course)
         {
             // Simulate processing payment, checking prerequisites, etc.
             Console.WriteLine($"[EnrollmentManager] Processing enrollment for {user.GetName()} in {course.Name}...");

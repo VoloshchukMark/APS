@@ -10,33 +10,33 @@ namespace APS.Models.Mediator
     public class CourseEnrollmentMediator : IMediator
     {
         // It knows about the sub-systems it coordinates
-        private readonly EnrollmentManager _enrollmentManager;
+        private readonly IEnrollmentManager _enrollmentManager;
 
-        public CourseEnrollmentMediator()
+        public CourseEnrollmentMediator(IEnrollmentManager enrollmentManager)
         {
-            _enrollmentManager = EnrollmentManager.GetInstance();
+            _enrollmentManager = enrollmentManager;
         }
-        
+
         // The core logic. It reacts to notifications from components.
         public void Notify(object sender, string eventType, object data)
         {
             // A User is attempting to enroll
-            if (eventType == "User.Enroll" && sender is User enrollingUser && data is Course targetCourse)
+            if (eventType == "User.Enroll" && sender is IUser enrollingUser && data is ICourse targetCourse)
             {
                 Console.WriteLine($"[Mediator] Received enrollment request from '{enrollingUser.GetName()}' for '{targetCourse.Name}'.");
-                
+
                 // 1. Coordinate with the EnrollmentManager
                 _enrollmentManager.ProcessEnrollment(enrollingUser, targetCourse);
-                
+
                 // 2. Coordinate with the Course
                 targetCourse.HandleEnrollmentRequest(enrollingUser);
             }
-            
+
             // The Course has confirmed the enrollment
-            else if (eventType == "Course.Enrolled" && sender is Course enrolledCourse && data is User confirmedUser)
+            else if (eventType == "Course.Enrolled" && sender is ICourse enrolledCourse && data is IUser confirmedUser)
             {
                 Console.WriteLine($"[Mediator] Course '{enrolledCourse.Name}' confirms enrollment for '{confirmedUser.GetName()}'.");
-                
+
                 // 3. Notify the User
                 confirmedUser.ReceiveEnrollmentConfirmation(enrolledCourse.Name);
             }
