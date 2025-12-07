@@ -3,7 +3,12 @@ using APS.Models; // Потрібно для User, ICourseDirector, ICourseBuild
 
 namespace APS.Models.Proxy
 {
-    // 3. Заступник (Proxy)
+    /// <summary>
+    /// Proxy
+    /// 
+    /// Indirection implementation (GRASP)
+    /// Works as a space in between Actor and Real Director. Decide should Actor address to the Real Director
+    /// </summary>
     public class CourseDirectorProxy : ICourseDirector
     {
         private CourseDirector _realDirector; // Посилання на реальний об'єкт
